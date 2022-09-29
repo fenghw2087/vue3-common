@@ -1,6 +1,6 @@
 {
   "name": "@hy-ai/common",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "main": "index.ts",
   "author": "fenghaowei@corp.netease.com",
   "license": "MIT",
@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "lodash": "^4.0.0",
-    "patch-package": "^6.4.7",
     "vue": "^3.2.0",
     "@element-plus/icons": "^0.0.11",
     "element-plus": "^2.0.2"
