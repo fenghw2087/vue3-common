@@ -1,0 +1,54 @@
+diff --git a/node_modules/@music/corona-web-sdk/es/index.js b/node_modules/@music/corona-web-sdk/es/index.js
+index 8904e68..83e8a07 100644
+--- a/node_modules/@music/corona-web-sdk/es/index.js
++++ b/node_modules/@music/corona-web-sdk/es/index.js
+@@ -75,6 +75,10 @@ var setGlobalOnError = function setGlobalOnError(cb) {
+     }
+ };
+ 
++var addBreadcrumb = function addBreadcrumb(obj) {
++    Coronacore.captureBreadcrumb(obj);
++}
++
+ /**
+  * 发送信息
+  * @param {string | Object} msg
+@@ -269,7 +273,8 @@ var uploadCacheError = function uploadCacheError() {
+  * @param {string} env 当前环境变量，默认 'prod'
+  * @param {boolean} debug 是否开启 debug 模式，开启后会上报 dev 环境的错误日志，默认 false
+  */
+-var corona = function corona(params) {
++var corona = function corona(params, config) {
++    config = config || {}
+     if (!params.id) {
+         // eslint-disable-next-line no-console
+         console.warn('Corona 初始化失败：请传入应用 id');
+@@ -277,7 +282,17 @@ var corona = function corona(params) {
+     }
+     var env = params.env || 'prod';
+     var debug = params.debug || false;
+-    Coronacore.config(params.id, env, debug, coronaOptions).install();
++    var _config = Object.assign({}, coronaOptions)
++    if (config.maxBreadcrumbs) {
++        _config.maxBreadcrumbs = config.maxBreadcrumbs
++    }
++    if (config.sampleRate) {
++        _config.sampleRate = config.sampleRate
++    }
++    if (config.ignoreErrors) {
++        _config.ignoreErrors = config.ignoreErrors
++    }
++    Coronacore.config(params.id, env, debug, _config).install();
+ 
+     // 启动时增加全局捕获 Promise 的未处理异常 unhandledrejection 事件
+     window.onunhandledrejection = function (e) {
+@@ -295,7 +310,8 @@ var corona = function corona(params) {
+         error: error,
+         setUser: setUser,
+         setGlobalTags: setGlobalTags,
+-        setGlobalOnError: setGlobalOnError
++        setGlobalOnError: setGlobalOnError,
++        addBreadcrumb: addBreadcrumb
+     };
+ };
+ 
