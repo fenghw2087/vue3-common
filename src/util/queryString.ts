@@ -2,7 +2,9 @@ function toObject(string: string | Record<string, string>) {
 	const q = new window.URLSearchParams(string)
 	const r = {} as Record<string, string>
 	for (const [key, value] of q) {
-		r[key] = value
+		if (value !== '') {
+			r[key] = value
+		}
 	}
 	return r
 }
@@ -16,7 +18,13 @@ function assign(qs1: string | Record<string, string>, qs2: string | Record<strin
 }
 
 function toString(ob: Record<string, string>) {
-	return new window.URLSearchParams(ob).toString()
+	const nobj = { ...ob }
+	for (const key in nobj) {
+		if (nobj.key === '') {
+			delete nobj.key
+		}
+	}
+	return new window.URLSearchParams(nobj).toString()
 }
 
 const Qs = {

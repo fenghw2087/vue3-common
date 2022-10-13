@@ -1,6 +1,6 @@
 {
   "name": "@hy-ai/common",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "main": "index.ts",
   "author": "fenghaowei@corp.netease.com",
   "license": "MIT",

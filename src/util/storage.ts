@@ -2,7 +2,7 @@ class Storage {
 	namespace = ''
 
 	setNamespace(namespace: string) {
-		if (!this.namespace || namespace.indexOf('_NS_') > -1) {
+		if (!!this.namespace || namespace.indexOf('_NS_') > -1) {
 			throw new Error('storage namespace can not includes string "_NS_"')
 		}
 		this.namespace = namespace

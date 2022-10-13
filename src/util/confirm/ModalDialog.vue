@@ -1,6 +1,6 @@
 <template>
 	<el-dialog
-		:custom-class="`common-dialog ${customClass || ''}`"
+		:class="`common-dialog ${customClass || ''}`"
 		:model-value="visible"
 		title="Tips"
 		:close-on-click-modal="false"

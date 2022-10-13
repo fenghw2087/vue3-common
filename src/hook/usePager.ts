@@ -88,6 +88,10 @@ function usePager({
 	function resetSearchParams() {
 		searchParams.value = { ...defaultSearchParams }
 	}
+
+	async function refresh() {
+		getList(pageNo.value, searchParams.value)
+	}
 	return {
 		pageNo,
 		pageSize,
@@ -97,7 +101,8 @@ function usePager({
 		getList,
 		searchParams,
 		loading,
-		resetSearchParams
+		resetSearchParams,
+		refresh
 	}
 }
 
