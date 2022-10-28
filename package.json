@@ -1,12 +1,9 @@
 {
-  "name": "@hy-ai/common",
+  "name": "@fhw-fe/common",
   "version": "1.0.6",
   "main": "index.ts",
-  "author": "fenghaowei@corp.netease.com",
+  "author": "604645400@qq.com",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "http://rnpm.hz.netease.com"
-  },
   "dependencies": {
     "@soerenmartius/vue3-clipboard": "^0.1.2",
     "mitt": "^3.0.0",
